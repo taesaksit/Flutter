@@ -59,25 +59,21 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (selectedIndex) {
       case 0:
         page = GeneratorPage();
-        break; // Add break statement to prevent fall-through
       case 1:
         page = FavoritesPage();
-        break; // Add break statement to prevent fall-through
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Namer App'),
+        title: Text('Name App'),
       ),
       drawer: Drawer(
         child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                color: Colors.blue,
               ),
               child: Text(
                 'Menu',
@@ -90,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 setState(() {
                   selectedIndex = 0;
-                  Navigator.pop(context); // Close the drawer
+                  Navigator.pop(context);
                 });
               },
             ),
@@ -100,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 setState(() {
                   selectedIndex = 1;
-                  Navigator.pop(context); // Close the drawer
+                  Navigator.pop(context);
                 });
               },
             ),
@@ -167,7 +163,7 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.headline4!.copyWith(
+    final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
     );
 
@@ -176,7 +172,7 @@ class BigCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text(
-          pair.asPascalCase,
+          pair.asLowerCase,
           style: style,
           semanticsLabel: "${pair.first} ${pair.second}",
         ),
@@ -200,15 +196,13 @@ class FavoritesPage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
-          child: Text(
-            'You have ${appState.favorites.length} favorites:',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          child: Text('You have '
+              '${appState.favorites.length} favorites:'),
         ),
         for (var pair in appState.favorites)
           ListTile(
             leading: Icon(Icons.favorite),
-            title: Text(pair.asPascalCase),
+            title: Text(pair.asLowerCase),
           ),
       ],
     );
