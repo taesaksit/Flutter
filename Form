@@ -1,0 +1,32 @@
+class FormPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Form Page '),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(35.0),
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.5),
+                child: TextField(),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.5),
+                child: TextField(),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.5),
+                child: ElevatedButton(
+                  onPressed: () => {},
+                  child: Text('Clcik'),
+                ),
+              )
+            ],
+          ),
+        ));
+  }
+}
